@@ -431,6 +431,134 @@
     @include mq(md) {
         padding-bottom: clamped(76);
     }
+
+    &__header {
+        padding-top: 40px;
+        margin-bottom: 40px;
+        text-align: center;
+
+        @include mq(md) {
+            padding-top: 60px;
+            margin-bottom: 50px;
+        }
+
+        &-lead {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            @extend %fz-15;
+            line-height: 1.8;
+            color: #555;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    &__telbox {
+        background-color: #f8f9fa;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        padding: 20px 25px;
+        max-width: 480px;
+        margin: 0 auto 35px;
+        text-align: center;
+
+        &-label {
+            @extend %fz-13;
+            color: #666;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        &-num {
+            display: block;
+            font-family: $font-family-barlow;
+            font-size: rem(28);
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            margin-bottom: 6px;
+            transition: opacity 0.2s ease;
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+            @include mq(md) {
+                font-size: rem(32);
+            }
+        }
+
+        &-hours {
+            display: block;
+            font-size: rem(12);
+            color: #888;
+        }
+    }
+
+    &__steps {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        max-width: 600px;
+        margin: 0 auto 40px;
+
+        @include mq(md) {
+            gap: 16px;
+        }
+    }
+
+    &__step {
+        flex: 1;
+        background-color: #fff;
+        border: 1px solid var(--gray);
+        border-radius: 6px;
+        padding: 10px 8px;
+        text-align: center;
+        transition: all 0.3s ease;
+
+        @include mq(md) {
+            padding: 12px 16px;
+        }
+
+        .step-num {
+            display: block;
+            font-family: $font-family-barlow;
+            font-size: rem(11);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #888;
+            margin-bottom: 2px;
+        }
+
+        .step-text {
+            display: block;
+            font-size: rem(12);
+            font-weight: 500;
+            color: var(--base);
+
+            @include mq(md) {
+                font-size: rem(14);
+            }
+        }
+
+        &.is-current {
+            background-color: var(--base);
+            border-color: var(--base);
+
+            .step-num {
+                color: var(--primary);
+            }
+
+            .step-text {
+                color: #fff;
+                font-weight: 700;
+            }
+        }
+    }
     #mfp_warning{
         display: none !important;
     }

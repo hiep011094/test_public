@@ -37,6 +37,76 @@ page > privacy
         }
     }
 
+    // Highlights
+    &__highlights {
+        margin-bottom: 40px;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        padding: 30px 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+
+        @include mq(md) {
+            padding: 35px 30px;
+            margin-bottom: 50px;
+        }
+
+        &-title {
+            @extend %fz-18;
+            font-weight: 700;
+            color: var(--base);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        &-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+
+            @include mq(md) {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+        }
+
+        &-card {
+            background-color: #fbfbfb;
+            padding: 20px 15px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+        }
+
+        &-icon {
+            font-family: $font-family-barlow;
+            font-size: rem(24);
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        &-title {
+            display: block;
+            @extend %fz-15;
+            color: var(--base);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        &-desc {
+            @extend %fz-13;
+            color: #666;
+            line-height: 1.6;
+        }
+    }
+
     // Table of contents / Index
     &__toc {
         background-color: #f8f9fa;
@@ -211,6 +281,31 @@ page > privacy
                     display: inline-block;
                     min-width: 110px;
                 }
+            }
+        }
+    }
+
+    // Back to TOC
+    &__back {
+        margin-top: 40px;
+        text-align: center;
+
+        &-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 24px;
+            background-color: #f1f3f5;
+            color: var(--base);
+            font-size: rem(13);
+            font-weight: 500;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: var(--primary);
+                color: #fff;
             }
         }
     }

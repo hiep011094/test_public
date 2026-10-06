@@ -59,6 +59,21 @@
         if ($datepicker.length) {
             $datepicker.datepicker();
         }
+
+        // Real-time email confirmation indicator
+        const $email = $('input[name="email"]');
+        const $confirmEmail = $('input[name="confirm_email"]');
+
+        if ($email.length && $confirmEmail.length) {
+            $confirmEmail.on('input blur', function () {
+                const val = $(this).val();
+                if (val.length > 0 && val !== $email.val()) {
+                    $(this).css('border-color', 'var(--red)');
+                } else {
+                    $(this).css('border-color', '');
+                }
+            });
+        }
     });
 
 })(jQuery);

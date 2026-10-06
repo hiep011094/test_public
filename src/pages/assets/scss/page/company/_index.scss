@@ -129,6 +129,74 @@ page > company
         }
     }
 
+    // Certification Badges
+    &__badges {
+        margin-top: 40px;
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        @include mq(md) {
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        &-item {
+            background-color: #fff;
+            padding: 25px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+
+            &:hover {
+                transform: translateY(-3px);
+                border-color: var(--primary);
+            }
+        }
+
+        &-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background-color: rgba(224, 0, 0, 0.08);
+            color: var(--primary);
+            font-family: $font-family-barlow;
+            font-weight: 700;
+            font-size: rem(13);
+            border-radius: 50%;
+            flex-shrink: 0;
+            letter-spacing: 0.05em;
+        }
+
+        &-body {
+            flex: 1;
+        }
+
+        &-title {
+            display: block;
+            @extend %fz-15;
+            color: var(--base);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        &-desc {
+            @extend %fz-13;
+            color: #666;
+            line-height: 1.6;
+        }
+    }
+
     // Access Section
     &__access {
         margin-top: 40px;
