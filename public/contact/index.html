@@ -139,8 +139,8 @@
                                     <span class="c-form__head c-txt16 u-fw--500">氏名<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input" type="text" name="氏名" placeholder="ダミーテキストが入ります。" required="required">
-                                    <p class="c-form__txt14 c-txt14">※ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <input class="c-input" type="text" name="氏名" placeholder="例）山田 太郎" required="required">
+                                    <p class="c-form__txt14 c-txt14">※全角文字でご入力ください。</p>
                                 </div>
                             </div>
                             <div class="c-form__item">
@@ -148,7 +148,7 @@
                                     <span class="c-form__head c-txt16 u-fw--500">フリガナ<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input" type="text" name="フリガナ" data-charcheck="kana" placeholder="ダミーテキストが入ります。" required="required">
+                                    <input class="c-input" type="text" name="フリガナ" data-charcheck="kana" placeholder="例）ヤマダ タロウ" required="required">
                                 </div>
                             </div>
                             <div class="c-form__item">
@@ -158,68 +158,69 @@
                                 <div class="c-form__content">
                                     <div class="c-select">
                                         <select name="都道府県" required="required">
-                                            <option value="" selected="selected">【ダミーテキストが入ります。】</option>
-                                            <option value="ダミーテキストが入ります1。">ダミーテキストが入ります1。</option>
-                                            <option value="ダミーテキストが入ります2。">ダミーテキストが入ります2。</option>
-                                            <option value="ダミーテキストが入ります3。">ダミーテキストが入ります3。</option>
-                                            <option value="ダミーテキストが入ります4。">ダミーテキストが入ります4。</option>
-                                            <option value="ダミーテキストが入ります5。">ダミーテキストが入ります5。</option>
-                                            <option value="ダミーテキストが入ります6。">ダミーテキストが入ります6。</option>
-                                            <option value="ダミーテキストが入ります7。">ダミーテキストが入ります7。</option>
+                                            <option value="" selected="selected">都道府県を選択してください</option>
+                                            <option value="東京都">東京都</option>
+                                            <option value="神奈川県">神奈川県</option>
+                                            <option value="千葉県">千葉県</option>
+                                            <option value="埼玉県">埼玉県</option>
+                                            <option value="大阪府">大阪府</option>
+                                            <option value="愛知県">愛知県</option>
+                                            <option value="福岡県">福岡県</option>
+                                            <option value="その他">その他（日本国外・未定）</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
-                                    <span class="c-form__head c-txt16 u-fw--500">ダミーテキスト1<span class="c-form__rq">必須</span></span>
+                                    <span class="c-form__head c-txt16 u-fw--500">ご相談種別<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
                                     <div class="c-form__checkboxs">
                                         <div class="c-checkbox">
-                                            <label><input type="checkbox" name="ダミーテキスト1" value="ダミーテキスト1" required="required">ダミーテキスト1</label>
+                                            <label><input type="checkbox" name="ご相談種別" value="Webサイト新規制作・リニューアル" required="required">Webサイト新規制作・リニューアル</label>
                                         </div>
                                         <div class="c-checkbox">
-                                            <label><input type="checkbox" name="ダミーテキスト1" value="ダミーテキスト2" required="required">ダミーテキスト2</label>
+                                            <label><input type="checkbox" name="ご相談種別" value="フロントエンド開発（EJS/SCSS）" required="required">フロントエンド開発（EJS/SCSS）</label>
                                         </div>
                                         <div class="c-checkbox">
-                                            <label><input type="checkbox" name="ダミーテキスト1" value="ダミーテキスト3" required="required">ダミーテキスト3</label>
+                                            <label><input type="checkbox" name="ご相談種別" value="システム開発・API連携" required="required">システム開発・API連携</label>
                                         </div>
                                         <div class="c-checkbox">
-                                            <label><input type="checkbox" name="ダミーテキスト1" value="ダミーテキスト4" required="required">ダミーテキスト4</label>
+                                            <label><input type="checkbox" name="ご相談種別" value="保守運用・CI/CD構築支援" required="required">保守運用・CI/CD構築支援</label>
                                         </div>
                                     </div>
-                                    <div id="errormsg_ダミーテキスト1" class="mfp_err"></div>
+                                    <div id="errormsg_ご相談種別" class="mfp_err"></div>
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
-                                    <span class="c-form__head c-txt16 u-fw--500">ダミーテキスト2<span class="c-form__rq">必須</span></span>
+                                    <span class="c-form__head c-txt16 u-fw--500">想定ご予算<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
                                     <div class="c-form__radios">
                                         <div class="c-radio">
-                                            <label><input type="radio" name="ダミーテキスト2" value="ダミーテキスト1" required="required">ダミーテキスト1</label>
+                                            <label><input type="radio" name="想定ご予算" value="50万円〜100万円" required="required">50万円〜100万円</label>
                                         </div>
                                         <div class="c-radio">
-                                            <label><input type="radio" name="ダミーテキスト2" value="ダミーテキスト2" required="required">ダミーテキスト2</label>
+                                            <label><input type="radio" name="想定ご予算" value="100万円〜300万円" required="required">100万円〜300万円</label>
                                         </div>
                                         <div class="c-radio">
-                                            <label><input type="radio" name="ダミーテキスト2" value="ダミーテキスト3" required="required">ダミーテキスト3</label>
+                                            <label><input type="radio" name="想定ご予算" value="300万円〜500万円" required="required">300万円〜500万円</label>
                                         </div>
                                         <div class="c-radio">
-                                            <label><input type="radio" name="ダミーテキスト2" value="ダミーテキスト4" required="required">ダミーテキスト4</label>
+                                            <label><input type="radio" name="想定ご予算" value="500万円以上・未定" required="required">500万円以上・未定</label>
                                         </div>
                                     </div>
-                                    <div id="errormsg_ダミーテキスト2" class="mfp_err"></div>
+                                    <div id="errormsg_想定ご予算" class="mfp_err"></div>
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
-                                    <span class="c-form__head c-txt16 u-fw--500">生年月日</span>
+                                    <span class="c-form__head c-txt16 u-fw--500">ご希望の納期</span>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input" type="text" name="生年月日" aria-invalid="false" placeholder="ダミーテキストが入ります。">
+                                    <input class="c-input js-datepicker" type="text" name="ご希望の納期" aria-invalid="false" placeholder="例）2026/06/30">
                                 </div>
                             </div>
                             <div class="c-form__item">
@@ -227,7 +228,7 @@
                                     <span class="c-form__head c-txt16 u-fw--500">メールアドレス<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input" type="email" data-type="email" name="email" placeholder="ダミーテキストが入ります。" required="required">
+                                    <input class="c-input" type="email" data-type="email" name="email" placeholder="例）info@example.com" required="required">
                                 </div>
                             </div>
                             <div class="c-form__item">
@@ -235,7 +236,7 @@
                                     <span class="c-form__head c-txt16 u-fw--500">メールアドレス（確認）<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input" type="email" data-type="email" name="confirm_email" placeholder="ダミーテキストが入ります。" required="required">
+                                    <input class="c-input" type="email" data-type="email" name="confirm_email" placeholder="例）info@example.com（確認のため再入力）" required="required">
                                 </div>
                             </div>
                             <div class="c-form__item">
@@ -243,26 +244,26 @@
                                     <span class="c-form__head c-txt16 u-fw--500">電話番号</span>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input" type="tel" data-type="tel" name="電話番号" placeholder="ダミーテキストが入ります。">
+                                    <input class="c-input" type="tel" data-type="tel" name="電話番号" placeholder="例）03-1234-5678">
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
                                     <span class="c-form__head c-txt16 u-fw--500">郵便番号<span class="c-form__rq">必須</span></span>
-                                    <p class="c-form__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <p class="c-form__txt16 c-txt16">郵便番号から住所が自動補完されます。</p>
                                 </div>
                                 <div class="c-form__content">
-                                    <input class="c-input p-postal-code" type="text" name="郵便番号" placeholder="記入例）0000000" required="required">
-                                    <p class="c-form__txt14 c-txt14">※ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <input class="c-input p-postal-code" type="text" name="郵便番号" placeholder="例）1500002（ハイフン不要）" required="required">
+                                    <p class="c-form__txt14 c-txt14">※半角数字7桁をご入力ください。</p>
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
-                                    <span class="c-form__head c-txt16 u-fw--500">住所<span class="c-form__rq">必須</span></span>
+                                    <span class="c-form__head c-txt16 u-fw--500">都道府県・市区町村<span class="c-form__rq">必須</span></span>
                                 </div>
                                 <div class="c-form__content">
                                     <div class="c-form__child">
-                                        <input class="c-input p-region p-locality p-street-address" type="text" name="住所" placeholder="ダミーテキストが入ります。" required="required">
+                                        <input class="c-input p-region p-locality p-street-address" type="text" name="住所" placeholder="例）東京都渋谷区渋谷2丁目1-1" required="required">
                                     </div>
                                 </div>
                             </div>
@@ -272,68 +273,67 @@
                                 </div>
                                 <div class="c-form__content">
                                     <div class="c-form__child">
-                                        <input class="c-input" type="text" name="番地・建物名" placeholder="ダミーテキストが入ります。">
+                                        <input class="c-input" type="text" name="番地・建物名" placeholder="例）渋谷ビル 5F">
                                     </div>
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
-                                    <span class="c-form__head c-txt16 u-fw--500">備考</span>
-                                    <p class="c-form__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <span class="c-form__head c-txt16 u-fw--500">お問い合わせ内容</span>
+                                    <p class="c-form__txt16 c-txt16">課題やご要望を詳細にご記入ください。</p>
                                 </div>
                                 <div class="c-form__content">
-                                    <textarea class="c-textarea" name="備考" rows="60" cols="60"></textarea>
+                                    <textarea class="c-textarea" name="備考" rows="60" cols="60" placeholder="プロジェクトの概要、想定スケジュール、技術的なご要望などをご自由にご記入ください。"></textarea>
                                 </div>
                             </div>
                             <div class="c-form__item">
                                 <div class="c-form__ttl">
-                                    <span class="c-form__head c-txt16 u-fw--500">添付ファイル<span class="c-form__rq">必須</span></span>
-                                    <p class="c-form__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <span class="c-form__head c-txt16 u-fw--500">参考資料添付<span class="c-form__rq">必須</span></span>
+                                    <p class="c-form__txt16 c-txt16">企画書や要件定義書等のファイル。</p>
                                 </div>
                                 <div class="c-form__content">
                                     <div class="c-file js-file">
                                         <label class="c-file__inner js-file__inner" for="file_01">
                                             <input id="file_01" type="file" name="添付ファイル" accept=".jpg,.jpeg,.png,.gif,.pdf,.docx,.xlsx,.pptx" required="required">
-                                            <span class="c-file__content js-file__content">添付する</span>
+                                            <span class="c-file__content js-file__content">ファイルを選択する</span>
                                         </label>
                                         <span class="c-file__clear js-file-clear">×</span>
                                     </div>
-                                    <p class="c-form__txt16 c-txt16">※アップロード可能なファイル形式:.jpg,.jpeg,.png,.gif,.pdf,.docx,.xlsx,.pptx</p>
+                                    <p class="c-form__txt16 c-txt16">※対応ファイル形式: .pdf, .docx, .xlsx, .pptx, .jpg, .png（最大10MB）</p>
                                     <div id="errormsg_添付ファイル" class="mfp_err"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="c-form-pravicy">
-                            <h2 class="c-form-pravicy__title">ダミーテキストが入ります。ダミーテキストが入ります。</h2>
+                            <h2 class="c-form-pravicy__title">個人情報のお取り扱いに関する同意条項</h2>
                             <div class="c-form-pravicy__inner js-mCustomScrollbar">
                                 <div class="c-form-pravicy__item">
-                                    <p class="c-form-pravicy__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <p class="c-form-pravicy__txt16 c-txt16">株式会社ジェイライン（以下「当社」）は、お問い合わせフォームを通じて取得したお客様の個人情報を、以下の利用規約および個人情報保護方針に基づき適正に管理・運用いたします。</p>
                                 </div>
                                 <div class="c-form-pravicy__item">
-                                    <p class="c-form-pravicy__txt18 c-txt18 u-fw--500">1. ダミーテキストが入ります。ダミーテキストが入ります。</p>
-                                    <p class="c-form-box__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
-                                    <p class="c-form-box__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
-                                    <p class="c-form-box__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <p class="c-form-pravicy__txt18 c-txt18 u-fw--500">1. 個人情報の収集および利用目的</p>
+                                    <p class="c-form-box__txt16 c-txt16">お客様からご提供いただいた個人情報は、お問い合わせに対するご回答、お見積もりの提示、および関連するサービス案内のご連絡にのみ利用いたします。</p>
+                                    <p class="c-form-box__txt16 c-txt16">あらかじめ明示した目的の範囲外でお客様の個人情報を利用することは一切ございません。</p>
                                 </div>
                                 <div class="c-form-pravicy__item">
-                                    <p class="c-form-pravicy__txt18 c-txt18 u-fw--500">2. ダミーテキストが入ります。ダミーテキストが入ります。</p>
-                                    <p class="c-form-box__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <p class="c-form-pravicy__txt18 c-txt18 u-fw--500">2. 第三者への提供および開示の禁止</p>
+                                    <p class="c-form-box__txt16 c-txt16">法令に基づく正当な開示請求がある場合を除き、お客様の事前の承諾を得ることなく第三者へ個人情報を開示または提供することはいたしません。</p>
                                 </div>
                                 <div class="c-form-pravicy__item">
-                                    <p class="c-form-pravicy__txt18 c-txt18 u-fw--500">3. ダミーテキストが入ります。ダミーテキストが入ります。</p>
-                                    <p class="c-form-box__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
-                                    <p class="c-form-box__txt16 c-txt16">ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。ダミーテキストが入ります。</p>
+                                    <p class="c-form-pravicy__txt18 c-txt18 u-fw--500">3. 安全管理措置および暗号化通信</p>
+                                    <p class="c-form-box__txt16 c-txt16">当フォームからのデータ送信はSSL暗号化通信によって保護されており、第三者による通信内容の傍受や改ざんを防止しています。</p>
+                                    <p class="c-form-box__txt16 c-txt16">社内のセキュリティ基準に準拠し、漏洩・滅失・改ざんの防止に万全の安全管理体制を維持いたします。</p>
                                 </div>
                             </div>
                             <div class="c-form-verify">
                                 <div class="c-form-verify__inner c-checkbox">
-                                    <label><input type="checkbox" required="required" data-exc="1" name="個人情報のお取り扱い" value="同意する">ダミーテキストが入ります。ダミーテキストが入ります。</label>
+                                    <label><input type="checkbox" required="required" data-exc="1" name="個人情報のお取り扱い" value="同意する">個人情報の取り扱いに関する条項に同意する</label>
                                     <div id="errormsg_個人情報のお取り扱い" class="mfp_err"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="c-form__btns">
-                            <button type="submit">入力内容を確認</button>
+                            <button type="submit">入力内容を確認する</button>
                         </div>
                     </form>
                     <script type="text/javascript" id="mfpjs" src="mailformpro/mailformpro.cgi" charset="UTF-8"></script>

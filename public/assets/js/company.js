@@ -48,5 +48,12 @@
         }).on('mouseleave', function () {
             $(this).removeClass('is-active');
         });
+
+        // Table row hover feedback
+        $('.p-company__overview .l-tbl__item').on('mouseenter', function () {
+            $(this).addClass('is-row-active');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-row-active');
+        });
     });
 })(jQuery);

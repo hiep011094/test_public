@@ -74,6 +74,13 @@
                 }
             });
         }
+
+        // Active form item indicator on focus
+        $('.c-form__item input, .c-form__item textarea, .c-form__item select').on('focus', function () {
+            $(this).closest('.c-form__item').addClass('is-focused');
+        }).on('blur', function () {
+            $(this).closest('.c-form__item').removeClass('is-focused');
+        });
     });
 
 })(jQuery);
