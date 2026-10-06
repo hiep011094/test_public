@@ -42,5 +42,12 @@
                 $(this).removeClass('is-hovered');
             });
         }
+
+        // Timeline item interaction
+        $('.p-about__history .l-tbl__item').on('mouseenter', function () {
+            $(this).addClass('is-active');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-active');
+        });
     });
 })(jQuery);

@@ -38,6 +38,13 @@
     }).on('mouseleave', function () {
       $(this).removeClass('is-hover');
     });
+
+    // News row hover interaction
+    $('.p-top__news-list .l-tbl__item').on('mouseenter', function () {
+      $(this).addClass('is-hovered');
+    }).on('mouseleave', function () {
+      $(this).removeClass('is-hovered');
+    });
   });
 })(jQuery);
 

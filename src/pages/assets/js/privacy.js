@@ -33,5 +33,12 @@
         }).on('mouseleave', function () {
             $(this).removeClass('is-hover');
         });
+
+        // Hover effect for article sections
+        $('.p-privacy__article').on('mouseenter', function () {
+            $(this).addClass('is-focused');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-focused');
+        });
     });
 })(jQuery);
