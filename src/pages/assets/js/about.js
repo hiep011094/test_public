@@ -49,5 +49,12 @@
         }).on('mouseleave', function () {
             $(this).removeClass('is-active');
         });
+
+        // Strengths item interaction
+        $('.p-about__strengths-item').on('mouseenter', function () {
+            $(this).addClass('is-hovered');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-hovered');
+        });
     });
 })(jQuery);

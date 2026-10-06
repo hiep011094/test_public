@@ -55,5 +55,12 @@
         }).on('mouseleave', function () {
             $(this).removeClass('is-row-active');
         });
+
+        // CSR section hover interaction
+        $('.p-company__csr').on('mouseenter', function () {
+            $(this).addClass('is-hovered');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-hovered');
+        });
     });
 })(jQuery);

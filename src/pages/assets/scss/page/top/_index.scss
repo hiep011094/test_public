@@ -13,6 +13,40 @@ page > top
         padding-bottom: clamped(100, 140);
     }
 
+    // Trust Bar
+    &__trust {
+        background-color: #111;
+        color: #fff;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        &-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            text-align: center;
+        }
+
+        &-tag {
+            font-family: $font-family-barlow;
+            font-size: rem(11);
+            font-weight: 700;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.08em;
+        }
+
+        &-text {
+            font-size: rem(13);
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 0.02em;
+        }
+    }
+
     // Intro Section
     &__intro {
         padding: 60px 0;

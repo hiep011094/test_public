@@ -569,6 +569,55 @@
             }
         }
     }
+
+    // Quick Help FAQ
+    &__faq {
+        max-width: 600px;
+        margin: 0 auto 30px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        padding: 16px 20px;
+
+        &-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+
+            .q {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                background-color: var(--primary);
+                color: #fff;
+                font-family: $font-family-barlow;
+                font-size: rem(13);
+                font-weight: 700;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+
+            .a {
+                strong {
+                    display: block;
+                    @extend %fz-14;
+                    color: var(--base);
+                    font-weight: 700;
+                    margin-bottom: 4px;
+                }
+
+                p {
+                    @extend %fz-13;
+                    color: #666;
+                    line-height: 1.6;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
     #mfp_warning{
         display: none !important;
     }

@@ -40,5 +40,12 @@
         }).on('mouseleave', function () {
             $(this).removeClass('is-focused');
         });
+
+        // Notice badge interaction
+        $('.p-privacy__notice').on('mouseenter', function () {
+            $(this).css('background-color', '#e2e8f0');
+        }).on('mouseleave', function () {
+            $(this).css('background-color', '#f1f5f9');
+        });
     });
 })(jQuery);

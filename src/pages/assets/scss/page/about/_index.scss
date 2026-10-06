@@ -254,6 +254,67 @@ page > about
         }
     }
 
+    // Corporate Strengths
+    &__strengths {
+        padding: 40px 0;
+        background-color: #f8f9fa;
+
+        @include mq(md) {
+            padding: 50px 0;
+        }
+
+        &-box {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+
+            @include mq(md) {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        &-item {
+            background-color: #fff;
+            padding: 28px 24px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+
+            &:hover {
+                transform: translateY(-4px);
+                border-color: var(--primary);
+            }
+        }
+
+        &-tag {
+            display: inline-block;
+            font-family: $font-family-barlow;
+            font-size: rem(11);
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        &-title {
+            @extend %fz-16;
+            font-weight: 700;
+            color: var(--base);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        &-desc {
+            @extend %fz-13;
+            color: #666;
+            line-height: 1.7;
+        }
+    }
+
     // History Timeline
     &__history {
         margin-top: 40px;
