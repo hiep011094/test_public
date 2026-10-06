@@ -1,0 +1,198 @@
+# ──────────────────────────────────────────────────────────
+# 🚀 TỰ ĐỘNG BUILD & ĐẨY SẢN PHẨM SANG NHÁNH 'public'
+# ──────────────────────────────────────────────────────────
+# Trigger:
+#   - Khi có commit được push hoặc merge vào nhánh `master` hoặc `main`
+#   - Có thể kích hoạt thủ công từ GitHub Actions UI (workflow_dispatch)
+#
+# Hoạt động:
+#   1. Kiểm tra tính hợp lệ của nhánh kích hoạt (master / main)
+#   2. Kéo code mới nhất từ nhánh nguồn
+#   3. Đọc cấu hình build an toàn từ deploy-config.json
+#   4. Cài đặt môi trường Node.js & dependencies
+#   5. Chạy unit tests & build dự án (npm run build)
+#   6. Kiểm tra an toàn thư mục sản phẩm build (không rỗng)
+#   7. Lưu chính xác nội dung commit và tác giả từ commit nguồn
+#   8. Tự động kiểm tra/tạo nhánh `public` độc lập (orphan branch) nếu chưa có
+#   9. Đưa thư mục build (public/) vào nhánh `public`, commit và push
+# ──────────────────────────────────────────────────────────
+
+name: 🚀 Build & Push to Public Branch
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+# Cần quyền write để có thể push commit và nhánh lên repository
+permissions:
+  contents: write
+
+# Tránh xung đột push đồng thời khi có nhiều commit liên tiếp
+concurrency:
+  group: sync-public-branch
+  cancel-in-progress: false
+
+jobs:
+  build-and-push:
+    name: Build & Sync Public
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛡️ Xác thực nhánh kích hoạt
+        run: |
+          BRANCH_NAME="${{ github.ref_name }}"
+          if [ "$BRANCH_NAME" != "master" ] && [ "$BRANCH_NAME" != "main" ]; then
+            echo "❌ LỖI: Nhánh '$BRANCH_NAME' không được phép kích hoạt đồng bộ vào nhánh public!"
+            echo "   Chỉ hỗ trợ nhánh: master hoặc main."
+            exit 1
+          fi
+          echo "✅ Nhánh nguồn hợp lệ: $BRANCH_NAME"
+
+      - name: 📥 Kéo Source Code (${{ github.ref_name }})
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: true
+
+      - name: 📑 Đọc cấu hình Build
+        id: config
+        run: |
+          BUILD_CMD=$(jq -r '.build_command // "npm run build"' deploy-config.json 2>/dev/null || echo "npm run build")
+          SOURCE_FOLDER=$(jq -r '.source_folder | select(. != null and . != "") // "public"' deploy-config.json 2>/dev/null || echo "public")
+          
+          echo "BUILD_CMD=$BUILD_CMD" >> $GITHUB_ENV
+          echo "SOURCE_FOLDER=$SOURCE_FOLDER" >> $GITHUB_ENV
+          
+          echo "📌 Lệnh build: $BUILD_CMD"
+          echo "📌 Thư mục sản phẩm: $SOURCE_FOLDER"
+
+          # 🛡️ Validate BUILD_CMD (chỉ cho phép các lệnh npm/npx an toàn)
+          if ! echo "$BUILD_CMD" | grep -qE '^(npm |npx )'; then
+            echo "❌ LỖI: BUILD_CMD không hợp lệ: '$BUILD_CMD'"
+            echo "   Chỉ cho phép các lệnh bắt đầu bằng 'npm ' hoặc 'npx '."
+            exit 1
+          fi
+
+      - name: 📝 Lưu thông tin commit người dùng
+        id: commit_info
+        run: |
+          # Trích xuất toàn bộ commit message của commit hiện tại
+          git log -1 --pretty=%B > "${{ runner.temp }}/commit_msg.txt"
+          
+          # Đảm bảo nếu commit message trống hoặc chỉ có khoảng trắng thì có giá trị dự phòng
+          if ! grep -q '[^[:space:]]' "${{ runner.temp }}/commit_msg.txt"; then
+            echo "Build $SOURCE_FOLDER from ${{ github.ref_name }} (${{ github.sha }})" > "${{ runner.temp }}/commit_msg.txt"
+          fi
+
+          # Lưu thông tin tác giả commit
+          AUTHOR_NAME=$(git log -1 --pretty=%an)
+          AUTHOR_EMAIL=$(git log -1 --pretty=%ae)
+          AUTHOR_NAME="${AUTHOR_NAME:-github-actions[bot]}"
+          AUTHOR_EMAIL="${AUTHOR_EMAIL:-github-actions[bot]@users.noreply.github.com}"
+
+          echo "COMMIT_AUTHOR_NAME=$AUTHOR_NAME" >> $GITHUB_ENV
+          echo "COMMIT_AUTHOR_EMAIL=$AUTHOR_EMAIL" >> $GITHUB_ENV
+
+          echo "📌 Tác giả commit: ${AUTHOR_NAME} <${AUTHOR_EMAIL}>"
+          echo "📌 Nội dung commit:"
+          cat "${{ runner.temp }}/commit_msg.txt"
+
+      - name: ⚙️ Cài đặt Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Cài đặt dependencies
+        run: npm install --no-package-lock
+
+      - name: 🧪 Chạy Unit Tests
+        run: npm run test
+
+      - name: 🔨 Build dự án
+        run: ${{ env.BUILD_CMD }}
+
+      - name: 🛡️ Kiểm tra an toàn thư mục sản phẩm build
+        run: |
+          if [ ! -d "$SOURCE_FOLDER" ]; then
+            echo "❌ LỖI: Không tìm thấy thư mục build '$SOURCE_FOLDER' sau khi thực hiện build!"
+            exit 1
+          fi
+
+          # Đảm bảo thư mục build không bị rỗng
+          if [ -z "$(ls -A "$SOURCE_FOLDER" 2>/dev/null)" ]; then
+            echo "❌ LỖI: Thư mục build '$SOURCE_FOLDER' đang rỗng, không có sản phẩm được tạo ra!"
+            exit 1
+          fi
+
+          echo "✅ Đã tìm thấy thư mục '$SOURCE_FOLDER' với dung lượng:"
+          du -sh "$SOURCE_FOLDER"
+
+      - name: 📤 Đưa thư mục build sang nhánh public
+        run: |
+          # 1. Sao chép toàn bộ thư mục build sang runner.temp để cách ly hoàn toàn
+          rm -rf "${{ runner.temp }}/build_output"
+          mkdir -p "${{ runner.temp }}/build_output"
+          cp -r "$SOURCE_FOLDER" "${{ runner.temp }}/build_output/"
+
+          # 2. Chuẩn bị repository độc lập cho nhánh public
+          REMOTE_URL="https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          REPO_DIR="${{ runner.temp }}/public_branch_repo"
+          rm -rf "$REPO_DIR"
+
+          # 3. Kiểm tra xem nhánh public đã tồn tại chính xác trên remote chưa
+          HAS_PUBLIC_BRANCH=$(git ls-remote --heads "$REMOTE_URL" refs/heads/public)
+
+          if [ -n "$HAS_PUBLIC_BRANCH" ]; then
+            echo "📌 Nhánh 'public' đã tồn tại trên remote. Đang kéo nhánh public về..."
+            git clone --depth 1 --branch public "$REMOTE_URL" "$REPO_DIR"
+            cd "$REPO_DIR"
+          else
+            echo "🌱 Nhánh 'public' chưa tồn tại trên remote. Đang khởi tạo nhánh độc lập mới..."
+            git init -b public "$REPO_DIR"
+            cd "$REPO_DIR"
+            git remote add origin "$REMOTE_URL"
+          fi
+
+          git config core.autocrlf false
+          git config user.name "$COMMIT_AUTHOR_NAME"
+          git config user.email "$COMMIT_AUTHOR_EMAIL"
+
+          # Đảm bảo không có .gitignore ngoài ý muốn chặn thư mục build
+          [ -f .gitignore ] && rm -f .gitignore
+
+          # 4. Cập nhật nội dung thư mục public/
+          rm -rf "$SOURCE_FOLDER"
+          cp -r "${{ runner.temp }}/build_output/$SOURCE_FOLDER" ./
+
+          # 5. Thêm thay đổi vào stage
+          git add -A "$SOURCE_FOLDER"
+
+          # 6. Kiểm tra xem có thay đổi nào cần commit không
+          if git diff --staged --quiet; then
+            echo "ℹ️ Không có thay đổi nào trong thư mục '$SOURCE_FOLDER' so với commit trước đó trên nhánh 'public'."
+            echo "   Bỏ qua việc tạo commit mới."
+          else
+            git commit -F "${{ runner.temp }}/commit_msg.txt"
+            git push -u origin public
+            echo "🎉 Hoàn tất! Đã đẩy thành công sản phẩm build vào nhánh 'public'."
+          fi
+
+      - name: ❌ Hỗ trợ khắc phục khi xảy ra lỗi
+        if: failure()
+        run: |
+          echo "╔════════════════════════════════════════════════════════════════╗"
+          echo "║ ❌ TIẾN TRÌNH BUILD HOẶC ĐỒNG BỘ SANG NHÁNH 'public' THẤT BẠI ║"
+          echo "╚════════════════════════════════════════════════════════════════╝"
+          echo "👉 Hãy kiểm tra các nguyên nhân phổ biến sau:"
+          echo "   1. Lỗi quyền ghi (HTTP 403 / Permission Denied):"
+          echo "      → Vào GitHub Repo: Settings > Actions > General > Workflow permissions"
+          echo "      → Chọn 'Read and write permissions' và bấm Save."
+          echo "   2. Lỗi Build hoặc Unit Test:"
+          echo "      → Xem lại log chi tiết ở các bước 'Cài đặt dependencies', 'Chạy Unit Tests' hoặc 'Build dự án' bên trên."
+          echo "   3. Lỗi Branch Protection:"
+          echo "      → Nếu nhánh 'public' có quy tắc Branch Protection Rule cấm push trực tiếp, hãy nới lỏng quy tắc cho GitHub Actions bot."
+          exit 1

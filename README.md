@@ -194,6 +194,16 @@ EJSコンポーネントから一般的な静的HTMLをビルドします。
   npm run build      # プロジェクト確定時
   ```
 
+---
+
+## 4. Gitワークフロー: `public` ブランチへの自動ビルド・同期
+
+`master` または `main` ブランチへのプッシュまたはマージをトリガーとして、GitHub Actions (`.github/workflows/build-public.yml`) が自動的にビルドを実行し、生成された `public` ディレクトリのみを `public` ブランチに保存・同期します。
+
+- **自動作成**: `public` ブランチが存在しない場合、初回実行時に自動的に孤立ブランチ（orphan branch）として作成されます。
+- **変更追跡**: `public` ブランチはビルド成果物（`public/` フォルダ）の変更履歴のみを管理します。
+- **コミットメッセージ**: ソースブランチ（`master` / `main`）へコミットした際のユーザーのメッセージがそのまま `public` ブランチのコミットメッセージとして引き継がれます。
+- **無駄なコミットの防止**: ビルド結果に差分がない場合、コミットは自動的にスキップされます。
 
 ---
 
@@ -385,3 +395,19 @@ Mục đích: Dành riêng cho các dự án upload lên Rakuten RMS và Gold, y
   npm run dev        # Chạy dev
   npm run build      # Khi chốt dự án
   ```
+
+---
+
+## 4. Git Workflow: Tự Động Build & Lưu Trữ Sang Nhánh `public`
+
+Khi có commit được push hoặc merge vào nhánh `master` hoặc `main`, GitHub Actions (`.github/workflows/build-public.yml`) sẽ tự động chạy:
+
+1. **Tự động build**: Kéo code từ `master`/`main`, chạy kiểm thử unit test và build ra thư mục `public/`.
+2. **Tự động tạo nhánh**: Nếu nhánh `public` chưa tồn tại trên repository, GitHub Actions sẽ tự động khởi tạo nhánh `public` mới.
+3. **Quản lý thay đổi**: Nhánh `public` chỉ lưu trữ và theo dõi sự thay đổi của thư mục `public/` (sản phẩm build) khi code được đưa vào nhánh `master`/`main`.
+4. **Giữ nguyên nội dung commit**: Commit trên nhánh `public` sẽ mang đúng nội dung commit (commit message) và thông tin tác giả do người dùng viết khi đưa code lên `master`/`main`.
+5. **Tối ưu hóa**: Nếu sản phẩm build không có sự thay đổi so với bản trước đó trên nhánh `public`, hệ thống sẽ tự động bỏ qua không tạo commit rác.
+
+> [!NOTE]
+> Đảm bảo trong GitHub Repository: **Settings** -> **Actions** -> **General** -> mục **Workflow permissions** đã được bật chọn **Read and write permissions** để workflow có quyền đẩy commit lên nhánh `public`.
+
