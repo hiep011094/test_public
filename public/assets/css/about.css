@@ -17,12 +17,20 @@ global > mixin
 /* ================================
 UTILITIES
 ================================ */
+.p-about__strengths-desc {
+  font-size: 0.75rem;
+}
+
 .p-about__value-card-desc, .p-about__stats-label {
   font-size: 0.75rem;
 }
 
 .p-about__cta-text {
   font-size: 0.75rem;
+}
+
+.p-about__strengths-title {
+  font-size: 0.875rem;
 }
 
 .p-about__value-card-title, .p-about__history-year {
@@ -197,6 +205,48 @@ page > about
   color: #555;
   font-weight: 500;
 }
+.p-about__strengths {
+  padding: 40px 0;
+  background-color: #f8f9fa;
+}
+.p-about__strengths-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.p-about__strengths-item {
+  background-color: #fff;
+  padding: 28px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.p-about__strengths-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+.p-about__strengths-tag {
+  display: inline-block;
+  font-family: "Barlow", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.p-about__strengths-title {
+  font-weight: 700;
+  color: var(--base);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.p-about__strengths-desc {
+  color: #666;
+  line-height: 1.7;
+}
 .p-about__history {
   margin-top: 40px;
   max-width: 900px;
@@ -232,11 +282,17 @@ page > about
   justify-content: center;
 }
 @media screen and (min-width: 768px) {
+  .p-about__strengths-desc {
+    font-size: clamp(0.75rem, 0.2119vw + 0.6483rem, 0.8125rem);
+  }
   .p-about__value-card-desc, .p-about__stats-label {
     font-size: clamp(0.75rem, 0.4237vw + 0.5466rem, 0.875rem);
   }
   .p-about__cta-text {
     font-size: clamp(0.75rem, 0.6356vw + 0.4449rem, 0.9375rem);
+  }
+  .p-about__strengths-title {
+    font-size: clamp(0.875rem, 0.4237vw + 0.6716rem, 1rem);
   }
   .p-about__value-card-title, .p-about__history-year {
     font-size: clamp(1rem, 0.8475vw + 0.5932rem, 1.25rem);
@@ -287,6 +343,13 @@ page > about
   }
   .p-about__stats-unit {
     font-size: 1.5rem;
+  }
+  .p-about__strengths {
+    padding: 50px 0;
+  }
+  .p-about__strengths-box {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
   }
   .p-about__history .l-tbl__left {
     width: 180px;

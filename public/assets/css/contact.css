@@ -21,7 +21,11 @@ UTILITIES
   font-size: 0.625rem;
 }
 
-.p-contact__telbox-label {
+.p-contact__telbox-label, .p-contact__faq-item .a p {
+  font-size: 0.75rem;
+}
+
+.p-contact__faq-item .a strong {
   font-size: 0.75rem;
 }
 
@@ -492,6 +496,44 @@ UTILITIES
   color: #fff;
   font-weight: 700;
 }
+.p-contact__faq {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 16px 20px;
+}
+.p-contact__faq-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.p-contact__faq-item .q {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--primary);
+  color: #fff;
+  font-family: "Barlow", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.p-contact__faq-item .a strong {
+  display: block;
+  color: var(--base);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.p-contact__faq-item .a p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
 .p-contact #mfp_warning {
   display: none !important;
 }
@@ -608,8 +650,11 @@ UTILITIES
   .c-form__rq {
     font-size: clamp(0.625rem, 0.4237vw + 0.4216rem, 0.75rem);
   }
-  .p-contact__telbox-label {
+  .p-contact__telbox-label, .p-contact__faq-item .a p {
     font-size: clamp(0.75rem, 0.2119vw + 0.6483rem, 0.8125rem);
+  }
+  .p-contact__faq-item .a strong {
+    font-size: clamp(0.75rem, 0.4237vw + 0.5466rem, 0.875rem);
   }
   .p-contact__header-lead {
     font-size: clamp(0.75rem, 0.6356vw + 0.4449rem, 0.9375rem);

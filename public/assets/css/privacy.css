@@ -56,6 +56,32 @@ page > privacy
   max-width: 900px;
   margin: 0 auto;
 }
+.p-privacy__notice {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 18px;
+  background-color: #f1f5f9;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+.p-privacy__notice-badge {
+  font-family: "Barlow", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #475569;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.p-privacy__notice-text {
+  font-size: 0.8125rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
 .p-privacy__intro {
   margin-bottom: 35px;
   line-height: 1.9;

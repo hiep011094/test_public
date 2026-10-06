@@ -81,6 +81,13 @@
         }).on('blur', function () {
             $(this).closest('.c-form__item').removeClass('is-focused');
         });
+
+        // FAQ box hover interaction
+        $('.p-contact__faq').on('mouseenter', function () {
+            $(this).addClass('is-hovered');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-hovered');
+        });
     });
 
 })(jQuery);

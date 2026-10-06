@@ -45,6 +45,13 @@
     }).on('mouseleave', function () {
       $(this).removeClass('is-hovered');
     });
+
+    // Trust bar interactive badge
+    $('.p-top__trust').on('mouseenter', function () {
+      $(this).find('.p-top__trust-tag').css('transform', 'scale(1.05)');
+    }).on('mouseleave', function () {
+      $(this).find('.p-top__trust-tag').css('transform', 'scale(1)');
+    });
   });
 })(jQuery);
 
