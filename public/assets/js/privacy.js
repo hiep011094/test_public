@@ -6,8 +6,8 @@
     'use strict';
 
     $(function () {
-        // Smooth scrolling for Table of Contents anchor links
-        $('.p-privacy__toc-list a[href^="#"]').on('click', function (e) {
+        // Smooth scrolling for Table of Contents anchor links and back to top
+        $('.p-privacy__toc-list a[href^="#"], .p-privacy__back-btn').on('click', function (e) {
             e.preventDefault();
             const targetId = $(this).attr('href');
             const $target = $(targetId);
@@ -25,6 +25,13 @@
                     history.pushState(null, null, targetId);
                 }
             }
+        });
+
+        // Hover effect for highlight cards
+        $('.p-privacy__highlight-card').on('mouseenter', function () {
+            $(this).addClass('is-hover');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-hover');
         });
     });
 })(jQuery);

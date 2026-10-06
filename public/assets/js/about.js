@@ -32,5 +32,15 @@
                 observer.observe(this);
             });
         }
+
+        // Subtle hover interaction for stats items
+        const $statItems = $('.p-about__stat-item');
+        if ($statItems.length) {
+            $statItems.on('mouseenter', function () {
+                $(this).addClass('is-hovered');
+            }).on('mouseleave', function () {
+                $(this).removeClass('is-hovered');
+            });
+        }
     });
 })(jQuery);

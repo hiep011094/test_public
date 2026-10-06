@@ -30,6 +30,15 @@
   $(window).on("load", function () {
     $('.c-loading').delay(500).fadeOut('fast');
   });
+
+  $(function () {
+    // Interactive card lift feedback
+    $('.p-top__service-card, .p-top__process-step').on('mouseenter', function () {
+      $(this).addClass('is-hover');
+    }).on('mouseleave', function () {
+      $(this).removeClass('is-hover');
+    });
+  });
 })(jQuery);
 
 

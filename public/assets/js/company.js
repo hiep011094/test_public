@@ -41,5 +41,12 @@
                 $copyBtn.removeClass('is-copied').text(originalText);
             }, 2500);
         }
+
+        // Interactive hover feedback for branch cards and badges
+        $('.p-company__branches-card, .p-company__badge-item').on('mouseenter', function () {
+            $(this).addClass('is-active');
+        }).on('mouseleave', function () {
+            $(this).removeClass('is-active');
+        });
     });
 })(jQuery);
