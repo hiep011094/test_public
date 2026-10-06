@@ -1,0 +1,241 @@
+@use "sass:math";
+@use "../../global" as *;
+
+/*!
+page > about
+------------------------------
+*/
+
+.p-about {
+    padding-bottom: 80px;
+
+    @include mq(md) {
+        padding-bottom: clamped(100, 140);
+    }
+
+    &__section {
+        padding: 50px 0;
+
+        @include mq(md) {
+            padding: clamped(60, 90) 0;
+        }
+
+        &--bg {
+            background-color: #f8f9fa;
+        }
+    }
+
+    &__lead {
+        margin-top: 25px;
+        margin-bottom: 40px;
+        text-align: center;
+        max-width: 780px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include mq(md) {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+    }
+
+    // Mission & Vision Feature
+    &__mission {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        @include mq(md) {
+            flex-direction: row;
+            align-items: center;
+            gap: clamped(40, 60);
+        }
+
+        &-media {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+            @include mq(md) {
+                width: 50%;
+                flex-shrink: 0;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.6s ease;
+
+                &:hover {
+                    transform: scale(1.03);
+                }
+            }
+        }
+
+        &-body {
+            width: 100%;
+
+            @include mq(md) {
+                width: 50%;
+            }
+        }
+
+        &-tag {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 4px 14px;
+            font-size: rem(12);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        &-title {
+            @extend %fz-24;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: var(--base);
+
+            @include mq(md) {
+                font-size: rem(30);
+            }
+        }
+    }
+
+    // Values Cards
+    &__values {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 35px;
+
+        @include mq(md) {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+    }
+
+    &__value-card {
+        background-color: #fff;
+        padding: 35px 25px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #ff6b6b);
+        }
+
+        &-num {
+            font-family: $font-family-barlow;
+            font-size: rem(42);
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.12);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        &-title {
+            @extend %fz-20;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--base);
+
+            span {
+                display: block;
+                font-size: rem(13);
+                font-weight: 500;
+                color: var(--primary);
+                letter-spacing: 0.08em;
+                margin-top: 4px;
+            }
+        }
+
+        &-desc {
+            @extend %fz-14;
+            line-height: 1.8;
+            color: #666;
+        }
+    }
+
+    // History Timeline
+    &__history {
+        margin-top: 40px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+
+        .l-tbl__left {
+            @include mq(md) {
+                width: 180px;
+            }
+        }
+
+        &-year {
+            font-family: $font-family-barlow;
+            @extend %fz-20;
+            font-weight: 700;
+            color: var(--primary);
+        }
+    }
+
+    // CTA Box
+    &__cta {
+        margin-top: 60px;
+        background: linear-gradient(135deg, #2b2b2b 0%, #1a1a1a 100%);
+        border-radius: 12px;
+        padding: 40px 20px;
+        text-align: center;
+        color: #fff;
+
+        @include mq(md) {
+            padding: 60px 40px;
+            margin-top: 80px;
+        }
+
+        &-title {
+            @extend %fz-24;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+
+            @include mq(md) {
+                font-size: rem(30);
+            }
+        }
+
+        &-text {
+            @extend %fz-15;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+        }
+
+        &-btn {
+            display: inline-flex;
+            justify-content: center;
+        }
+    }
+}

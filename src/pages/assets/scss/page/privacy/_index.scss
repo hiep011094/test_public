@@ -1,0 +1,229 @@
+@use "sass:math";
+@use "../../global" as *;
+
+/*!
+page > privacy
+------------------------------
+*/
+
+.p-privacy {
+    padding-bottom: 80px;
+
+    @include mq(md) {
+        padding-bottom: clamped(100, 140);
+    }
+
+    &__section {
+        padding: 40px 0;
+
+        @include mq(md) {
+            padding: clamped(50, 70) 0;
+        }
+    }
+
+    &__inner {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    &__intro {
+        margin-bottom: 35px;
+        line-height: 1.9;
+        @extend %fz-16;
+        color: var(--base);
+
+        @include mq(md) {
+            margin-bottom: 45px;
+        }
+    }
+
+    // Table of contents / Index
+    &__toc {
+        background-color: #f8f9fa;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        padding: 25px 20px;
+        margin-bottom: 50px;
+
+        @include mq(md) {
+            padding: 30px 35px;
+            margin-bottom: 60px;
+        }
+
+        &-title {
+            @extend %fz-18;
+            font-weight: 700;
+            color: var(--base);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            &::before {
+                content: "";
+                width: 4px;
+                height: 1.1em;
+                background-color: var(--primary);
+                border-radius: 2px;
+            }
+        }
+
+        &-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            @include mq(md) {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px 24px;
+            }
+
+            li {
+                a {
+                    @extend %fz-14;
+                    color: #555;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    transition: color 0.2s ease, transform 0.2s ease;
+
+                    &::before {
+                        content: "›";
+                        color: var(--primary);
+                        font-weight: 700;
+                        font-size: rem(16);
+                        line-height: 1;
+                    }
+
+                    &:hover {
+                        color: var(--primary);
+                        transform: translateX(3px);
+                    }
+                }
+            }
+        }
+    }
+
+    // Policy Articles
+    &__article {
+        margin-bottom: 45px;
+        padding-top: 15px;
+        scroll-margin-top: 100px;
+
+        @include mq(md) {
+            margin-bottom: 55px;
+            scroll-margin-top: 120px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 40px;
+        }
+
+        &-title {
+            @extend %fz-20;
+            font-weight: 700;
+            color: var(--base);
+            padding-bottom: 10px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #eee;
+            position: relative;
+
+            @include mq(md) {
+                font-size: rem(22);
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 60px;
+                height: 2px;
+                background-color: var(--primary);
+            }
+        }
+
+        &-body {
+            @extend %fz-15;
+            line-height: 1.9;
+            color: #444;
+
+            p {
+                margin-bottom: 15px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            ol, ul {
+                margin: 15px 0;
+                padding-left: 22px;
+
+                li {
+                    margin-bottom: 8px;
+                    line-height: 1.8;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    // Contact Box inside Policy
+    &__contact {
+        background-color: #fff;
+        border: 2px solid var(--primary);
+        border-radius: 8px;
+        padding: 30px 25px;
+        margin-top: 25px;
+
+        @include mq(md) {
+            padding: 35px 40px;
+        }
+
+        &-title {
+            @extend %fz-18;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        &-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                @extend %fz-14;
+                line-height: 1.8;
+                color: var(--base);
+                margin-bottom: 6px;
+
+                strong {
+                    font-weight: 700;
+                    display: inline-block;
+                    min-width: 110px;
+                }
+            }
+        }
+    }
+
+    // Revision Date
+    &__date {
+        margin-top: 50px;
+        text-align: right;
+        @extend %fz-14;
+        color: #777;
+
+        p {
+            margin-bottom: 4px;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+/**
+ * company.js — Company page interactive scripts
+ */
+
+(function ($) {
+    'use strict';
+
+    $(function () {
+        // Copy address to clipboard functionality
+        const $copyBtn = $('[data-copy-address]');
+        if ($copyBtn.length) {
+            $copyBtn.on('click', function () {
+                const targetText = $(this).data('copy-address') || '東京都渋谷区渋谷2丁目1-1 渋谷ビル 5F';
+                
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(targetText).then(() => {
+                        const originalText = $copyBtn.text();
+                        $copyBtn.addClass('is-copied').text('住所をコピーしました！');
+                        setTimeout(() => {
+                            $copyBtn.removeClass('is-copied').text(originalText);
+                        }, 2500);
+                    }).catch(() => {
+                        fallbackCopy(targetText);
+                    });
+                } else {
+                    fallbackCopy(targetText);
+                }
+            });
+        }
+
+        function fallbackCopy(text) {
+            const $temp = $('<textarea>');
+            $('body').append($temp);
+            $temp.val(text).select();
+            document.execCommand('copy');
+            $temp.remove();
+
+            const originalText = $copyBtn.text();
+            $copyBtn.addClass('is-copied').text('住所をコピーしました！');
+            setTimeout(() => {
+                $copyBtn.removeClass('is-copied').text(originalText);
+            }, 2500);
+        }
+    });
+})(jQuery);
